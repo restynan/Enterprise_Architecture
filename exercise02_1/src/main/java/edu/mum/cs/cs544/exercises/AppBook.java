@@ -39,7 +39,7 @@ public class AppBook {
 	            session = sessionFactory.openSession();
 	            tx = session.beginTransaction();
 
-	            // retieve all Books
+	            // retrieve all Books
 	            @SuppressWarnings("unchecked")
 	            List<Book> bookList = session.createQuery("from Book").list();
 	            for (Book book : bookList) {
