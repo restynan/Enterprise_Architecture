@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Book {
@@ -16,6 +18,7 @@ public class Book {
 	private String ISBN;
 	private String author;
 	private double price;
+	@Temporal(TemporalType.DATE)
 	private java.util.Date publish_date;
 	
 	public Book() {
