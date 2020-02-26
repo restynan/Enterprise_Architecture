@@ -18,7 +18,7 @@ public class Book {
 	private String ISBN;
 	private String author;
 	private double price;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE) //temporal type
 	private java.util.Date publish_date;
 	
 	public Book() {
