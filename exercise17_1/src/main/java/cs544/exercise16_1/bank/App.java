@@ -2,9 +2,9 @@ package cs544.exercise16_1.bank;
 
 import java.util.Collection;
 
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import cs544.exercise16_1.bank.dao.HibernateUtil;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import cs544.exercise16_1.bank.domain.Account;
 import cs544.exercise16_1.bank.domain.AccountEntry;
 import cs544.exercise16_1.bank.domain.Customer;
@@ -18,7 +18,12 @@ public class App {
 
 	public static void main(String[] args) {
 		try {
-			IAccountService accountService = new AccountService();
+			
+			ApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
+			IAccountService accountService = context.getBean("accountService",IAccountService.class);
+			
+			
+			
 			// create 2 accounts;
 			accountService.createAccount(1263862, "Frank Brown");
 			accountService.createAccount(4253892, "John Doe");
@@ -51,9 +56,6 @@ public class App {
 			}
 			
 		}catch(RuntimeException e) {
-			HibernateUtil.getSessionFactory()
-			.getCurrentSession()
-			.getTransaction().rollback();
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
