@@ -36,7 +36,7 @@
 	</bean>
 <bean id="currencyConverter" class="cs544.exercise16_1.bank.service.CurrencyConverter"></bean>
 <bean id="jmsSender" class="cs544.exercise16_1.bank.jms.JMSSender"></bean>
-<bean id="logger" class="cs544.exercise16_1.bank.logging.Logger"></bean>
+<bean id="logger"   class="cs544.exercise16_1.bank.logging.Logger"></bean>
 
 
 

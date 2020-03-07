@@ -2,22 +2,18 @@ package cs544.exercise16_1.bank.service;
 
 import java.util.Collection;
 
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import cs544.exercise16_1.bank.dao.IAccountDAO;
 import cs544.exercise16_1.bank.domain.Account;
 import cs544.exercise16_1.bank.domain.Customer;
 import cs544.exercise16_1.bank.jms.IJMSSender;
-import cs544.exercise16_1.bank.jms.JMSSender;
 import cs544.exercise16_1.bank.logging.ILogger;
-import cs544.exercise16_1.bank.logging.Logger;
 
 
 
 
-@Transactional
+
 public class AccountService implements IAccountService {
 	private IAccountDAO accountDAO;
 	private ICurrencyConverter currencyConverter;
@@ -34,7 +30,8 @@ public class AccountService implements IAccountService {
 		this.jmsSender = jmsSender;
 		this.logger = logger;
 	}
-
+	
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public Account createAccount(long accountNumber, String customerName) {
 		
 		Account account = new Account(accountNumber);
@@ -45,7 +42,7 @@ public class AccountService implements IAccountService {
 		
 		return account;
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void deposit(long accountNumber, double amount) {
 		
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -57,7 +54,7 @@ public class AccountService implements IAccountService {
 		}
 		
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly=true)
 	public Account getAccount(long accountNumber) {
 		
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -65,14 +62,14 @@ public class AccountService implements IAccountService {
 		
 		return account;
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly=true)
 	public Collection<Account> getAllAccounts() {
 		
 		Collection<Account> accounts = accountDAO.getAccounts();
 		
 		return accounts; 
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void withdraw(long accountNumber, double amount) {
 		
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -81,7 +78,7 @@ public class AccountService implements IAccountService {
 		logger.log("withdraw with parameters accountNumber= "+accountNumber+" , amount= "+amount);
 		
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void depositEuros(long accountNumber, double amount) {
 		
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -94,7 +91,7 @@ public class AccountService implements IAccountService {
 		}
 		
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void withdrawEuros(long accountNumber, double amount) {
 		
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -104,7 +101,7 @@ public class AccountService implements IAccountService {
 		logger.log("withdrawEuros with parameters accountNumber= "+accountNumber+" , amount= "+amount);
 		
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void transferFunds(long fromAccountNumber, long toAccountNumber, double amount, String description) {
 		
 		Account fromAccount = accountDAO.loadAccount(fromAccountNumber);
