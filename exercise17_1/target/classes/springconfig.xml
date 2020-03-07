@@ -26,12 +26,17 @@
 	<bean id="accountService"
 		class="cs544.exercise16_1.bank.service.AccountService">
 		<constructor-arg ref="accountDAO"></constructor-arg>
+		<constructor-arg ref="currencyConverter"></constructor-arg>
+		<constructor-arg ref="jmsSender"></constructor-arg>
+		<constructor-arg ref="logger"></constructor-arg>
 	</bean>
 
-	<bean id="accountDAO"
-		class="cs544.exercise16_1.bank.dao.AccountDAO">
+	<bean id="accountDAO" class="cs544.exercise16_1.bank.dao.AccountDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+<bean id="currencyConverter" class="cs544.exercise16_1.bank.service.CurrencyConverter"></bean>
+<bean id="jmsSender" class="cs544.exercise16_1.bank.jms.JMSSender"></bean>
+<bean id="logger" class="cs544.exercise16_1.bank.logging.Logger"></bean>
 
 
 
