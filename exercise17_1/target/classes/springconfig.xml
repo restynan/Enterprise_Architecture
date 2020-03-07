@@ -10,8 +10,7 @@
 			http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<context:component-scan
-		base-package="cs544.exercise16_1.bank" />
+	<context:component-scan base-package="cs544.exercise16_1.bank" />
 	<context:annotation-config />
 
 	<bean id="dataSource"
