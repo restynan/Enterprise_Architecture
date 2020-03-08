@@ -20,8 +20,6 @@ public class AccountService implements IAccountService {
 	private IJMSSender jmsSender;
 	private ILogger logger;
 	
-	
-
 	public AccountService(IAccountDAO accountDAO, ICurrencyConverter currencyConverter, IJMSSender jmsSender,
 			ILogger logger) {
 		super();
