@@ -7,13 +7,13 @@ public class MywebInitilizer extends AbstractAnnotationConfigDispatcherServletIn
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Class[] {configTelusko.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class[] {configTelusko.class};
+		return null;
 	}
 
 	@Override
