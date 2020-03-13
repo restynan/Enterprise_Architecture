@@ -13,11 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class Cs544Lab01GreetingApplication {
 	
-	@LoadBalanced
-	  @Bean
-	  RestTemplate restTemplate() {
-	      return new RestTemplate();
-	  }
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(Cs544Lab01GreetingApplication.class, args);
