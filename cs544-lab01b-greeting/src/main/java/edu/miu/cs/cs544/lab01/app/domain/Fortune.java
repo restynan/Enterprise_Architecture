@@ -4,10 +4,7 @@ public class Fortune {
 	private int id;
 	private String text;
 	
-	public Fortune() {
-
-	}
-
+	public Fortune() {}
 	public Fortune(int id, String text) {
 		super();
 		this.id = id;
